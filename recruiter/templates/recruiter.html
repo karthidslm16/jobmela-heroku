@@ -1,0 +1,61 @@
+{% extends 'base_template.html' %}
+
+{% block l %}
+<li><a href="/recruiter">Home</a></li>
+{% endblock %}
+
+{% block r %}
+          <li>
+            <a href="/recruiter/createjob"><span class="glyphicon glyphicon-plus"></span> Create Job </a>
+          </li>
+        <li>
+          <a href="/recruiter/logout"><span class="glyphicon glyphicon-log-out"></span> Logout </a>
+        </li>
+{% endblock %}
+
+{% block body %}
+<br>
+<div class="container">
+  <div class="alert alert-info alert-dismissible">
+      <strong><i>  {{app_status}} </i></strong>  !!!!
+        <a href="#" class="close" data-dismiss="alert" arial-label="close">&times;</a>
+  </div>
+</div>
+
+<br>
+
+<div class="container-fluid">
+  {% for mess in message %}
+  <div class="row">
+      <div class = "col-sm-1">
+       </div>
+      <div class="panel panel-default col-sm-10">
+        <div class="panel-heading"><h3>{{ mess.job_name }} - #<a>{{mess.job_id}}</a> - #{{mess.job_location}}</h3></div>
+        <div class="panel-body">
+          <h3> Description: </h3><br>
+          <p>{{mess.job_desc}}</p>
+          <h3> Requirement: </h3><br>
+          <ul>
+            <li>{{mess.job_req_1}}</li>
+            <li>{{mess.job_req_2}}</li>
+            <li>{{mess.job_req_3}}</li>
+            <li>{{mess.job_req_4}}</li>
+          </ul>
+        </div>
+        <div class="panel-footer"> 
+          <center>
+            <form>
+            <input type="submit" class="form-control" class="btn btn-default" value="Select Candidate" formaction="/recruiter/selectcandidate/{{mess.job_id}}">
+            <input type="submit" class="form-control" class="btn btn-default" value="Delete Job" formaction="/recruiter/deletejob/{{mess.job_id}}">
+          </form>
+          </center>
+        </div>
+
+       </div>
+      <div class = "col-sm-1">
+      </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

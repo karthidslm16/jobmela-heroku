@@ -1,0 +1,27 @@
+{% extends 'myapp/templates/base_template.html' %}
+
+{% block r1 %}
+	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="user_registration.html">User</a></li>
+          <li><a href="recruiter_registration.html">Recruiter</a></li>
+        </ul>
+     </li>
+{% endblock %}
+
+{% block r2 %}
+	<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-log-in"></span> Login <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/user/login">User</a></li>
+          <li><a href="/recruiter/login">Recruiter</a></li>
+        </ul>
+    </li>
+{% endblock %}
+
+{% block l1 %}
+<a href="#">Home</a>
+{% endblock %}
+
+{% block body %}
+
+{% endblock %}

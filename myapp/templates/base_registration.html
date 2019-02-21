@@ -1,0 +1,47 @@
+{% extends 'base_template.html' %}
+{% block r %}
+          <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/recruiter/register">Recruiter</a></li>
+            <li><a href="/user/register">User</a></li>
+          </ul>
+          </li>
+
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-log-in"></span> Login <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/recruiter/login">Recruiter</a></li>
+            <li><a href="/user/login">User</a></li>
+          </ul>
+        </li>
+
+{% endblock %}
+
+{% block l %}
+<li><a href="/myapp">Home</a></li>
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+  {% block a %}{% endblock %}
+  {% csrf_token %}
+    <div class="form-group">
+        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" id="pwd1" placeholder="Enter password" name="pwd1" required>
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" id="pwd2" placeholder="Enter password" name="pwd2" required>
+    </div>
+
+    <div class="form-group">        
+        <button type="submit" class="form-control" class="btn btn-dark">Submit</button>
+    </div>
+  </form>
+  </center>
+</div>
+
+{% endblock %}

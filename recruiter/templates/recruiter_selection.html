@@ -1,0 +1,124 @@
+{% extends 'base_template.html' %}
+
+{% block l %}
+<li><a href="/recruiter">Home</a></li>
+{% endblock %}
+
+{% block r %}
+  <li>
+    <a href="/recruiter/createjob"><span class="glyphicon glyphicon-plus"></span> Create Job </a>
+  </li>
+  <li>
+    <a href="/recruiter/logout"><span class="glyphicon glyphicon-log-out"></span> Logout </a>
+  </li>
+{% endblock %}
+
+{% block body %}
+
+<script type="text/javascript">
+
+function func(str1, str2, str3, str4, str5, str6, str7){
+  document.getElementById('email').innerHTML = str1;
+  document.getElementById('name').innerHTML = str2 ;
+  document.getElementById('gender').innerHTML = str3;
+  document.getElementById('age').innerHTML = str4;
+  document.getElementById('resume').href = "http://" + str5 ;
+  document.getElementById('resume').innerHTML = str2 ;
+  document.getElementById('phone').innerHTML = str6;
+  document.getElementById("myForm").action = "/recruiter/shortlist/" + str1 +"/" + str7;
+}
+
+</script>
+
+<style>
+
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* Set a style for all buttons */
+
+button:hover {
+  opacity: 0.8;
+}
+
+.container {
+  padding: 16px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  cursor: pointer;
+}
+
+</style>
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">User Profile</h4>
+        </div>
+          <form method="post" id="myForm" action = "###">
+        <div class="modal-body">
+      {% csrf_token %}
+  <br>
+  <center>
+      <label>Email</label>
+      <b><label id="email">email</label></b>
+    <br><br>
+
+      <label>Name </label>
+      <b><label id="name">name</label></b>
+    <br><br>
+
+      <label>Gender </label> 
+      <b><label id="gender">gender</label></b>
+    <br><br>
+
+      <label>Age </label>
+      <b><label id="age">age</label></b>
+    <br><br>
+
+      <label>Resume </label>
+      <b><label><a id="resume" url = "#" target="_blank">resume</a></label></b>
+    <br><br>
+
+      <label>Phone </label>
+      <b><label id="phone">phone</label></b>
+    <br><br>
+
+  <b><input type="checkbox" name="Ovr_exp" value="Insufficient Overall experience"> Didn't have overall Experience<br><br>
+  <input type="checkbox" name="Rel_exp" value="Insufficient Relevant experience"> Didn't have relevant Experience<br><br>
+  <input type="checkbox" name="Rel_skill" value="Insufficient Relevant skill"> Didn't have relevant Skills<br><br>
+  <input type="checkbox" name="Irrelevant" value="Irrelavant Profile"> Irrelavant Profile<br><br>
+  </b>
+
+  </center>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" id = "submit" class="form-control" class="btn btn-outline-success">Shortlist</button>
+        </div>
+      </div>
+  </form>
+      
+    </div>
+  </div>
+
+<div class="container">
+	<br>
+          <ul>
+          	<center>
+              <div class="list-group">
+        				<a class="list-group-item active">Shortlist Candidate</a>
+                {% for mess in message %}
+        				<a onclick="func('{{mess.email}}', '{{mess.name}}', '{{mess.gender}}', '{{mess.age}}', '{{mess.resume}}', '{{mess.phone}}', '{{Job_id}}')" data-toggle="modal" data-target="#myModal" class="list-group-item">{{ mess.name }}</a>
+        				{% endfor %}
+      			  </div>
+			     </center>
+          </ul>
+</div>
+
+{% endblock %}
